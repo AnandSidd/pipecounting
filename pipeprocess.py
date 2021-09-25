@@ -3,9 +3,9 @@ import numpy as np
 
 count = 0
 
-def preprocess(minr, maxr, p1, p2):
+def preprocess(imgf, minr, maxr, p1, p2):
     print(minr, maxr, p1, p2)
-    img = cv2.imread('pipe.jpg')
+    img = imgf
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5,5), 0)
 ##    edge = cv2.Canny(blur, 220, 240)

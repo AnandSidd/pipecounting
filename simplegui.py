@@ -27,33 +27,37 @@ def get_img_data(f, maxsize=(2000, 1080), first=False):
     return ImageTk.PhotoImage(img)
 
 def on_trackbar1(minradius):
+    im1 = cv2.imread(f_name)
     global ct
     minr = minradius
     maxr = cv2.getTrackbarPos('maximum_radius', name)
     p1 = cv2.getTrackbarPos('param1', name)
     p2 = cv2.getTrackbarPos('param2', name)
-    ct = pipeprocess.preprocess(minr,maxr , p1,p2)
+    ct = pipeprocess.preprocess(im1, minr,maxr , p1,p2)
 def on_trackbar2(maxradius):
+    im1 = cv2.imread(f_name)
     global ct
     maxr = maxradius
     minr = cv2.getTrackbarPos('minimum_radius', name)
     p1 = cv2.getTrackbarPos('param1', name)
     p2 = cv2.getTrackbarPos('param2', name)
-    ct = pipeprocess.preprocess(minr,maxr, p1,p2)
+    ct = pipeprocess.preprocess(im1, minr,maxr, p1,p2)
 def on_trackbar3(par1):
+    im1 = cv2.imread(f_name)
     global ct
     p1 = par1
     maxr = cv2.getTrackbarPos('maximum_radius', name)
     minr = cv2.getTrackbarPos('minimum_radius', name)
     p2 = cv2.getTrackbarPos('param2', name)
-    ct = pipeprocess.preprocess(minr,maxr , p1,p2)
+    ct = pipeprocess.preprocess(im1, minr,maxr , p1,p2)
 def on_trackbar4(par2):
+    im1 = cv2.imread(f_name)
     global ct
     p2 = par2
     maxr = cv2.getTrackbarPos('maximum_radius', name)
     minr = cv2.getTrackbarPos('minimum_radius', name)
     p1 = cv2.getTrackbarPos('param1', name)
-    ct = pipeprocess.preprocess(minr,maxr , p1,p2)
+    ct = pipeprocess.preprocess(im1, minr,maxr , p1,p2)
 
 def drawcircle(action, x, y, flags, *userdata):
     global ct
@@ -73,6 +77,8 @@ def drawcircle(action, x, y, flags, *userdata):
     cv2.imwrite('aa.jpg', img)
     
 def opencv_window(file_name):
+    global f_name
+    f_name = file_name
     button = [20,60,50,250]
     cv2.namedWindow(name,cv2.WINDOW_NORMAL)
 ##    cv2.resizeWindow(name, 1080, 720)
